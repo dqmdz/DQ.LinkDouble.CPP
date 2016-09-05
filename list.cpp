@@ -79,8 +79,23 @@ Element* List::remove(int value) {
 		return NULL;
 
 	// Para el caso que el valor esté en el nodo apuntado por lastInsert
-	if (this->lastInsert->getElement()->getValue() == value) {
+	if (this->lastInsert->getElement()->getValue() == value)
 		return this->removeFound();
+
+	// Si el valor a eliminar está a la derecha
+	if (this->lastInsert->getElement()->getValue() > value) {
+		while (this->lastInsert->getNext() != NULL && this->lastInsert->getElement()->getValue() != value)
+			this->lastInsert = this->lastInsert->getNext();
+		if (this->lastInsert->getElement()->getValue() == value)
+			return this->removeFound();
+	}
+
+	// Si el valor a eliminar está a la izquierda
+	if (this->lastInsert->getElement()->getValue() < value) {
+		while (this->lastInsert->getBefore() != NULL && this->lastInsert->getElement()->getValue() != value)
+			this->lastInsert = this->lastInsert->getBefore();
+		if (this->lastInsert->getElement()->getValue() == value)
+			return this->removeFound();
 	}
 
 	return NULL;

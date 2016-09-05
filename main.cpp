@@ -18,8 +18,11 @@ int main(int argc, char* const argv[]) {
 	cout << "Removing" << endl << endl;
 
 	Element* e = NULL;
-	if ((e = ld.remove(3)) != NULL)
+	if ((e = ld.remove(3)) != NULL) {
 		cout << e->toString() << endl << endl;
+
+		cout << "Removed" << endl << endl;
+	}
 
 	ld.show();
 
